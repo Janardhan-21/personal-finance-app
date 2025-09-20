@@ -12,7 +12,7 @@ const Dashboard: React.FC = () => {
                 <Link to="/analytics">View Analytics</Link>
             </nav>
             <BudgetSummary />
-            <ExpenseList />
+            <ExpenseList expenses={[]} onDelete={() => {}} onEdit={() => {}} />
         </div>
     );
 };

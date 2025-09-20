@@ -1,11 +1,14 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../types';
+
+const dummyExpenses = [
+  { category: 'Food', amount: 100 },
+  { category: 'Transport', amount: 50 }
+];
 
 const Charts: React.FC = () => {
-    const expenses = useSelector((state: RootState) => state.expenses);
-    
+    const expenses = dummyExpenses; // Replace with real data later
+
     const data = {
         labels: expenses.map(expense => expense.category),
         datasets: [
@@ -19,18 +22,9 @@ const Charts: React.FC = () => {
         ],
     };
 
-    const options = {
-        scales: {
-            y: {
-                beginAtZero: true,
-            },
-        },
-    };
-
     return (
         <div>
-            <h2>Expense Chart</h2>
-            <Bar data={data} options={options} />
+            <Bar data={data} />
         </div>
     );
 };

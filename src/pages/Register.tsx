@@ -1,21 +1,23 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { registerUser } from '../../services/auth';
+import { useNavigate } from 'react-router-dom';
+// ...existing code...
+import { registerUser } from '../services/auth';
+// ...existing code...
 
 const Register = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError('');
 
         try {
-            await registerUser({ username, email, password });
-            history.push('/login');
+            await registerUser( username, email, password );
+            navigate('/login');
         } catch (err) {
             setError('Registration failed. Please try again.');
         }

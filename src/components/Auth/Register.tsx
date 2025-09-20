@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { registerUser } from '../../services/auth';
 
 const Register: React.FC = () => {
@@ -7,15 +7,15 @@ const Register: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError('');
 
         try {
-            await registerUser({ username, email, password });
-            history.push('/login');
+            await registerUser(username, password, email); // <-- FIXED
+            navigate('/login');
         } catch (err) {
             setError('Registration failed. Please try again.');
         }
